@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kButtonColor = Color(0xff1b1b1b);
-
+const kBackgroundColor = Color(0xfff2f3f4);
 
 // ext
 extension ColorExtension on Color {
