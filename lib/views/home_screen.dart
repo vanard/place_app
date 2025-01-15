@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:place_app/const.dart';
+import 'package:place_app/ext.dart';
 import 'package:place_app/models/place_model.dart';
+import 'package:place_app/views/detail_scrreen.dart';
+import 'package:place_app/views/profile_screen.dart';
+import 'package:place_app/widgets/home_app_bar_dart';
+import 'package:place_app/widgets/popular_places.dart';
+import 'package:place_app/widgets/recomend_list.dart';
 import 'package:place_app/widgets/see_all.dart';
+
+List<IconData> icons = [
+  Icons.home,
+  Icons.search,
+  Icons.shopping_cart,
+  Icons.bookmark_outline,
+  Icons.person_outline,
+];
+
+int selectedPage = 0;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,16 +27,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedPage = 0;
-
-  List<IconData> icons = [
-    Icons.home,
-    Icons.search,
-    Icons.shopping_cart,
-    Icons.bookmark_outline,
-    Icons.person_outline,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: appBar(),
       body: Column(
         children: [
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
@@ -65,14 +71,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => PlaceDetailScreen(
-                      //       destination: popular[index],
-                      //     ),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => DetailScrreen(
+                            place: popular[index],
+                          ),
+                        ),
+                      );
                     },
                     child: PopularPlaces(
                       place: popular[index],
@@ -114,21 +120,21 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: List.generate(
-                  popular.length,
+                  recomend.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => PlaceDetailScreen(
-                        //       destination: recomendate[index],
-                        //     ),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DetailScrreen(
+                              place: recomend[index],
+                            ),
+                          ),
+                        );
                       },
-                      child: RecomendList(place: popular[index]),
+                      child: RecomendList(place: recomend[index]),
                     ),
                   ),
                 ),
@@ -148,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 15,
-                          vertical: 22,
+                          vertical: 15,
                         ),
                         decoration: BoxDecoration(
                           color: kButtonColor,
@@ -161,6 +167,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             (index) => GestureDetector(
                               onTap: () {
                                 setState(() {
+                                  // if (index == 0 && selectedPage != 0) {
+                                  //   Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //       builder: (_) => HomeScreen(),
+                                  //     ),
+                                  //   );
+                                  // } else
+                                  if (index == 4 && selectedPage != 4) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => ProfileScreen(),
+                                      ),
+                                    );
+                                  }
                                   selectedPage = index;
                                 });
                               },
@@ -175,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -186,325 +208,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class RecomendList extends StatelessWidget {
-  final Place place;
-  const RecomendList({
-    super.key, required this.place
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 120,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 5,
-      ),
-      child: Stack(
-        children: [
-          Row(
-            children: [
-              Container(
-                height: 95,
-                width: 110,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      place.photos[0],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      place.name,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        wordSpacing: 1,
-                        letterSpacing: 0.5,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.location_on,
-                          color: Colors.black,
-                          size: 16,
-                        ),
-                        Text(
-                          place.location,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black
-                                .withTransparent(0.6),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    "${place.rate}",
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    " (${place.review} reviews)",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black
-                                      .withTransparent(0.6),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Column(
-              children: [
-                const Spacer(),
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "\$${place.price}",
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.blueGrey),
-                      ),
-                      TextSpan(
-                        text: " /Person",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black.withTransparent(0.6),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class PopularPlaces extends StatelessWidget {
-  final Place place;
-
-  const PopularPlaces({
-    super.key,
-    required this.place,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          bottom: 0,
-          right: 20,
-          left: 20,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12.withTransparent(0.1),
-                  spreadRadius: 15,
-                  blurRadius: 5,
-                ),
-              ],
-            ),
-          ),
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Container(
-            height: 210,
-            width: MediaQuery.of(context).size.width * 0.75,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image:
-                    // NetworkImage(
-                    //   place.photos[0],
-                    // ),
-                    Image.network(place.photos[0],
-                        errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                      height: 400, child: Text('No Images to Display'));
-                }).image,
-              ),
-            ),
-            child: Column(
-              children: [
-                const Spacer(),
-                Container(
-                  color: Colors.black.withTransparent(0.7),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              place.name,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const Icon(
-                                  Icons.location_on,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  place.location,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star_rounded,
-                              size: 22,
-                              color: Colors.amber[800],
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              place.rate.toString(),
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-AppBar appBar() {
-  return AppBar(
-    elevation: 0,
-    backgroundColor: Colors.white,
-    leadingWidth: 250,
-    leading: const Row(
-      children: [
-        SizedBox(width: 15),
-        Icon(
-          Icons.pin_drop_outlined,
-          color: Colors.black,
-        ),
-        SizedBox(width: 5),
-        Text(
-          "Bali, Indonesia",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-            color: Colors.black,
-          ),
-        ),
-        Icon(
-          Icons.keyboard_arrow_down,
-          size: 30,
-          color: Colors.black26,
-        ),
-      ],
-    ),
-    actions: [
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-            color: Colors.black12,
-          ),
-        ),
-        padding: const EdgeInsets.all(6),
-        child: const Stack(
-          children: [
-            Icon(
-              Icons.notifications_outlined,
-              color: Colors.black,
-              size: 30,
-            ),
-            Positioned(
-              top: 5,
-              right: 5,
-              child: CircleAvatar(
-                radius: 5,
-                backgroundColor: Colors.red,
-              ),
-            ),
-          ],
-        ),
-      ),
-      const SizedBox(width: 15),
-    ],
-  );
 }
