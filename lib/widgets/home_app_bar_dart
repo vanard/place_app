@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+
+AppBar appBar() {
+  return AppBar(
+    elevation: 0,
+    backgroundColor: Colors.white,
+    leadingWidth: 250,
+    leading: const Row(
+      children: [
+        SizedBox(width: 15),
+        Icon(
+          Icons.pin_drop_outlined,
+          color: Colors.black,
+        ),
+        SizedBox(width: 5),
+        Text(
+          "Bali, Indonesia",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+        Icon(
+          Icons.keyboard_arrow_down,
+          size: 30,
+          color: Colors.black26,
+        ),
+      ],
+    ),
+    actions: [
+      Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: Colors.black12,
+          ),
+        ),
+        padding: const EdgeInsets.all(6),
+        child: const Stack(
+          children: [
+            Icon(
+              Icons.notifications_outlined,
+              color: Colors.black,
+              size: 30,
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: CircleAvatar(
+                radius: 5,
+                backgroundColor: Colors.red,
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(width: 15),
+    ],
+  );
+}
