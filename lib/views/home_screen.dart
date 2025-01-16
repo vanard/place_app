@@ -122,7 +122,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 15),
         SingleChildScrollView(
-          controller: pageController,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Row(
@@ -178,7 +177,6 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 20),
         Expanded(
           child: SingleChildScrollView(
-            controller: pageController,
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: List.generate(
