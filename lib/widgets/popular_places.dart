@@ -12,6 +12,7 @@ class PopularPlaces extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         Positioned(
@@ -35,7 +36,7 @@ class PopularPlaces extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           child: Container(
             height: 210,
-            width: MediaQuery.of(context).size.width * 0.75,
+            width: screenWidth < 700 ? MediaQuery.of(context).size.width * 0.75 : 700 * 0.75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
