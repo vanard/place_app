@@ -12,7 +12,6 @@ class DetailScrreen extends StatefulWidget {
 }
 
 class _DetailScrreenState extends State<DetailScrreen> {
-  PageController pageController = PageController();
   int pageView = 0;
   @override
   Widget build(BuildContext context) {
@@ -42,6 +41,7 @@ class _DetailScrreenState extends State<DetailScrreen> {
                 child: Stack(
                   children: [
                     PageView(
+                      scrollBehavior: AppScrollBehavior(),
                       controller: pageController,
                       onPageChanged: (value) {
                         setState(() {
