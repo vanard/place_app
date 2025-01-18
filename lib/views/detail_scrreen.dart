@@ -298,12 +298,6 @@ class _DetailScrreenState extends State<DetailScrreen> {
                 onPressed: () => showSnackBar(context, 'The ticket has been added to the cart.'),
                 child: Container(
                   margin: const EdgeInsets.only(top: 2),
-                  // padding: const EdgeInsets.fromLTRB(
-                  //   30,
-                  //   20,
-                  //   10,
-                  //   20,
-                  // ),
                   padding: const EdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 30,

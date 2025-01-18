@@ -4,9 +4,7 @@ import 'package:place_app/models/place_model.dart';
 
 class RecomendList extends StatelessWidget {
   final Place place;
-  const RecomendList({
-    super.key, required this.place
-  });
+  const RecomendList({super.key, required this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +38,7 @@ class RecomendList extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -66,8 +63,7 @@ class RecomendList extends StatelessWidget {
                           place.location,
                           style: TextStyle(
                             fontSize: 12,
-                            color: Colors.black
-                                .withTransparent(0.6),
+                            color: Colors.black.withTransparent(0.6),
                           ),
                         )
                       ],
@@ -79,8 +75,7 @@ class RecomendList extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text:
-                                    "${place.rate}",
+                                text: "${place.rate}",
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -88,13 +83,11 @@ class RecomendList extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text:
-                                    " (${place.review} reviews)",
+                                text: " (${place.review} reviews)",
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black
-                                      .withTransparent(0.6),
+                                  color: Colors.black.withTransparent(0.6),
                                 ),
                               ),
                             ],

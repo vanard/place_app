@@ -36,17 +36,15 @@ class PopularPlaces extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           child: Container(
             height: 210,
-            width: screenWidth < 700 ? MediaQuery.of(context).size.width * 0.75 : 700 * 0.75,
+            width: screenWidth < 700
+                ? MediaQuery.of(context).size.width * 0.75
+                : 700 * 0.75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image:
-                    // NetworkImage(
-                    //   place.photos[0],
-                    // ),
-                    Image.network(place.photos[0],
-                        errorBuilder: (context, error, stackTrace) {
+                image: Image.network(place.photos[0],
+                    errorBuilder: (context, error, stackTrace) {
                   return Container(
                       height: 400, child: Text('No Images to Display'));
                 }).image,

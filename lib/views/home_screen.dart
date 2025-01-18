@@ -16,26 +16,6 @@ List<IconData> icons = [
   Icons.person_outline,
 ];
 
-// List<BottomNavigationBarItem> iconsItem = [
-//   BottomNavigationBarItem(
-//     icon: Icon(Icons.home),
-//     label: "Home",
-//   ),
-//   BottomNavigationBarItem(
-//     icon: Icon(Icons.search),
-//     label: "Search",
-//   ),
-//   BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
-//   BottomNavigationBarItem(
-//     icon: Icon(Icons.bookmark_outline),
-//     label: "Bookmark",
-//   ),
-//   BottomNavigationBarItem(
-//     icon: Icon(Icons.person_outline),
-//     label: "Profile",
-//   ),
-// ];
-
 int selectedPage = 0;
 
 class HomeScreen extends StatefulWidget {
@@ -51,20 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: appBar(),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   backgroundColor: kButtonColor,
-      //   items: iconsItem,
-      //   currentIndex: selectedPage,
-      //   selectedItemColor: Colors.white,
-      //   unselectedItemColor: Colors.white.withTransparent(0.4),
-      //   showSelectedLabels: false,
-      //   showUnselectedLabels: false,
-      //   onTap: (index) {
-      //     setState(() {
-      //       selectedPage = index;
-      //     });
-      //   },
-      // ),
       body: AnimatedSwitcher(
           duration: Duration(milliseconds: 500),
           child: selectedPage == 0
@@ -210,23 +176,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Column profileView(BuildContext context) {
     return Column(
       children: [
-        Spacer(flex: 1,),
+        Spacer(
+          flex: 1,
+        ),
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: SizedBox.fromSize(
-            size: Size.fromRadius(48), 
-            child: Image.network(
-                'https://avatars.githubusercontent.com/u/25784574?v=4',
-                fit: BoxFit.cover),
+            size: Size.fromRadius(48),
+            child: Image.network(kProfileImage, fit: BoxFit.cover),
           ),
         ),
         SizedBox(height: 15),
-        Text("Vian Rasyid D", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+        Text(
+          kName,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         SizedBox(height: 5),
-        Text("Mobile App Developer", style: TextStyle(fontSize: 18, color: Colors.black),),
+        Text(
+          kJob,
+          style: TextStyle(fontSize: 18, color: Colors.black),
+        ),
         SizedBox(height: 10),
-        Text("#OpenToWork", style: TextStyle(fontSize: 16, color: Colors.black54),),
-        Spacer(flex: 1,),
+        Text(
+          kCaption,
+          style: TextStyle(fontSize: 16, color: Colors.black54),
+        ),
+        Spacer(
+          flex: 1,
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Column(

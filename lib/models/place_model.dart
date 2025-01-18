@@ -50,7 +50,7 @@ List<Place> placeDestination = [
       review: 17409,
       price: 37.43,
       rate: 4.5),
-      Place(
+  Place(
       id: 2,
       name: "Sanur Beach",
       category: "popular",
@@ -66,7 +66,7 @@ List<Place> placeDestination = [
       review: 8316,
       price: 19.00,
       rate: 4.0),
-      Place(
+  Place(
       id: 3,
       name: "Seminyak Beach",
       category: "popular",
@@ -82,7 +82,6 @@ List<Place> placeDestination = [
       review: 5737,
       price: 25.00,
       rate: 4.0),
-
   Place(
       id: 11,
       name: "Best of Ubud Full-Day Tour with Jungle Swing",
@@ -99,7 +98,7 @@ List<Place> placeDestination = [
       review: 6907,
       price: 59.00,
       rate: 5.0),
-      Place(
+  Place(
       id: 12,
       name: "Bali Instagram Tour: The Most Famous Spots",
       category: "recomend",
@@ -115,7 +114,7 @@ List<Place> placeDestination = [
       review: 2363,
       price: 114.00,
       rate: 5.0),
-      Place(
+  Place(
       id: 13,
       name: "Nusa Penida All-Inclusive Day Trip",
       category: "recomend",
@@ -131,7 +130,7 @@ List<Place> placeDestination = [
       review: 4921,
       price: 96.98,
       rate: 5.0),
-      Place(
+  Place(
       id: 14,
       name: "Purpa Fine Art Gallery Seminyak",
       category: "recomend",
@@ -147,7 +146,7 @@ List<Place> placeDestination = [
       review: 132,
       price: 32.65,
       rate: 5.0),
-      Place(
+  Place(
       id: 15,
       name: "Nyaman Gallery",
       category: "recomend",
