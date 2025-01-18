@@ -292,34 +292,43 @@ class _DetailScrreenState extends State<DetailScrreen> {
                 ],
               ),
             ),
-            const Spacer(),
-            TextButton(
-              onPressed: () => showSnackBar(context, 'The ticket has been added to the cart.'),
-              child: Container(
-                margin: const EdgeInsets.only(top: 2),
-                padding: const EdgeInsets.symmetric(
+            SizedBox(width: 10,),
+            Expanded(
+              child: TextButton(
+                onPressed: () => showSnackBar(context, 'The ticket has been added to the cart.'),
+                child: Container(
+                  margin: const EdgeInsets.only(top: 2),
+                  // padding: const EdgeInsets.fromLTRB(
+                  //   30,
+                  //   20,
+                  //   10,
+                  //   20,
+                  // ),
+                  padding: const EdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 30,
                 ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: kButtonColor),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Colors.white,
-                    ),
-                    SizedBox(width: 15),
-                    Text(
-                      "Add to Cart",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: kButtonColor),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
                         color: Colors.white,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 15),
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        "Add to Cart",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
